@@ -52,7 +52,7 @@ El proyecto está dividido en etapas incrementales, cada una enfocada en diferen
    - Estado (Enum: DISPONIBLE, PRESTADO)
 3. Escribir pruebas unitarias para:
    - Creación de un libro con datos válidos
-   - Cambio de estado del libro
+   - Cambio de estadoLibro del libro
 
 **Ejemplo de Guía:**
 ```java
