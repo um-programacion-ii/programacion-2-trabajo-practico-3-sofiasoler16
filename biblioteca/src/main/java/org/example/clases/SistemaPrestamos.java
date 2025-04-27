@@ -1,7 +1,11 @@
 package org.example.clases;
 
+import org.example.excepciones.LibroNoDisponibleException;
+
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class SistemaPrestamos {
     private Catalogo catalogo;
@@ -14,13 +18,17 @@ public class SistemaPrestamos {
 
     public Prestamo prestarLibro(String isbn) {
         Libro libro = catalogo.buscarPorISBN(isbn);
-        if (libro != null) {
-            Prestamo prestamo = new Prestamo(libro);
-            prestamos.add(prestamo);
-            libro.setEstado(enums.EstadoLibro.PRESTADO);
-            return prestamo;
+
+        if (libro == null) {
+            throw new LibroNoDisponibleException("El libro no existe en el catálogo.");
         }
-        return null;
+
+        if (libro.getEstado() == enums.EstadoLibro.PRESTADO) {
+            throw new LibroNoDisponibleException("El libro ya fue prestado.");
+        }
+
+        libro.setEstado(enums.EstadoLibro.PRESTADO);
+        return new Prestamo(libro);
     }
 
     public List<Prestamo> getPrestamos() {
