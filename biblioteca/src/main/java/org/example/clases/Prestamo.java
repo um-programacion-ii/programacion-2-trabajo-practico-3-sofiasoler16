@@ -6,7 +6,7 @@ public class Prestamo {
     private LocalDate fechaPrestamo;
     private Libro libro;
 
-    public Prestamo(LocalDate fechaPrestamo, Libro libro) {
+    public Prestamo(Libro libro) {
         this.fechaPrestamo = LocalDate.now();
         this.libro = libro;
     }

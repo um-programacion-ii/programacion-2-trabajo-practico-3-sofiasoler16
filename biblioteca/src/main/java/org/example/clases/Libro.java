@@ -39,5 +39,8 @@ public class Libro {
         this.autor = autor;
     }
 
+    public void setEstado(enums.EstadoLibro estadoLibro) {
+        this.estadoLibro = estadoLibro;
+    }
 
 }
