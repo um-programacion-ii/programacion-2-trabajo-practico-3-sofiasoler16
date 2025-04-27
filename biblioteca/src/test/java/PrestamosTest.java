@@ -5,6 +5,7 @@ import org.example.clases.SistemaPrestamos;
 import enums.EstadoLibro;
 
 import org.example.excepciones.LibroNoDisponibleException;
+import org.example.excepciones.LibroNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -36,15 +37,16 @@ public class PrestamosTest {
     }
 
     @Test
-    void testPrestarLibroInexistenteLanzaLibroNoDisponibleException() {
+    void testPrestarLibroInexistenteLanzaLibroNoEncontradoException() {
         when(catalogo.buscarPorISBN("9999")).thenReturn(null);
 
-        Exception exception = assertThrows(LibroNoDisponibleException.class, () -> {
+        Exception exception = assertThrows(LibroNoEncontradoException.class, () -> {
             sistemaPrestamos.prestarLibro("9999");
         });
 
-        assertEquals("El libro no existe en el catálogo.", exception.getMessage());
+        assertEquals("El libro no existe en el catálogo con ese ISBN: 9999", exception.getMessage());
     }
+
 
     @Test
     void testPrestarLibroYaPrestadoLanzaLibroNoDisponibleException() {

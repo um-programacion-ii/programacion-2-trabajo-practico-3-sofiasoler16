@@ -1,6 +1,7 @@
 package org.example.clases;
 
 import org.example.excepciones.LibroNoDisponibleException;
+import org.example.excepciones.LibroNoEncontradoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class SistemaPrestamos {
         Libro libro = catalogo.buscarPorISBN(isbn);
 
         if (libro == null) {
-            throw new LibroNoDisponibleException("El libro no existe en el catálogo.");
+            throw new LibroNoEncontradoException("El libro no existe en el catálogo con ese ISBN: " + isbn);
         }
 
         if (libro.getEstado() == enums.EstadoLibro.PRESTADO) {
