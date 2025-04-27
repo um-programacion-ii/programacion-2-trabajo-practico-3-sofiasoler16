@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jpLeSJQi)
 # Sistema de Gestión de Biblioteca - Práctica de Testing
 
 ![Java](https://img.shields.io/badge/Java-21-orange)
@@ -10,9 +11,119 @@
 - **Recomendación:** Se sugiere leer la consigna completa antes de comenzar con el desarrollo para tener una visión general del proyecto y planificar adecuadamente el trabajo.
 
 ## Identificación del Alumno
-- **Nombre:** [Nombre del Alumno]
-- **Apellido:** [Apellido del Alumno]
-- **Legajo:** [Número de Legajo]
+- **Nombre:** Sofia
+- **Apellido:** Soler
+- **Legajo:** 62008
+
+## 1. Código fuente implementado
+### 📚 Libro:
+Representa un libro con atributos ISBN, título, autor y estado (DISPONIBLE o PRESTADO).
+### 📚 Catalogo:
+Permite agregar libros, buscar libros por ISBN y listar todos los libros disponibles.
+### 📚 Prestamo:
+Representa el préstamo de un libro en una fecha determinada.
+### 📚 SistemaPrestamos:
+Gestiona el proceso de préstamo de libros a partir de un catálogo.
+Maneja excepciones si el libro no existe o no está disponible.
+### 📚 Usuario:
+Representa un usuario con nombre y un historial de préstamos realizados.
+### 📚 GestionUsuarios:
+Permite registrar usuarios, buscar usuarios y registrar préstamos de libros.
+### 📚 Excepciones Personalizadas:
+LibroNoDisponibleException: Para indicar que un libro ya fue prestado.
+LibroNoEncontradoException: Para indicar que no existe el libro en el catálogo.
+UsuarioNoEncontradoException: Para indicar que no existe el usuario.
+
+## 2. Pruebas unitarias correspondientes
+Se implementaron pruebas unitarias utilizando JUnit 5 y Mockito para:
+### ✅ LibroTest:
+Creación de libros válidos.
+Cambio de estado del libro de DISPONIBLE a PRESTADO.
+### ✅ CatalogoTest:
+Agregar múltiples libros.
+Búsqueda exitosa de un libro por ISBN.
+Búsqueda fallida de un ISBN inexistente.
+### ✅ PrestamosTest:
+Flujo de préstamo de libros usando mocks.
+Manejo de libros ya prestados (excepción).
+Manejo de libros inexistentes (excepción).
+### ✅ UsuarioTest:
+Registro de usuarios y asociación de préstamos.
+Manejo de intento de préstamo a usuarios inexistentes.
+
+
+## 3. Documentación de las funciones implementadas y su propósito
+
+### 📚 Libro
+- **Libro(String isbn, String titulo, String autor):** Inicializa un libro como DISPONIBLE.
+- **getIsbn(), getTitulo(), getAutor(), getEstado(), setEstado():** Métodos de acceso y modificación segura.
+
+### 📚 Catalogo
+- **agregarLibro(Libro libro):** Agrega libros nuevos al catálogo.
+- **buscarPorISBN(String isbn):** Busca un libro específico por su ISBN.
+- **obtenerLibrosDisponibles():** Lista todos los libros disponibles usando streams.
+
+### 📚 Prestamo
+- **Prestamo(Libro libro):** Guarda el libro prestado y la fecha del préstamo.
+- **getLibro(), getFechaPrestamo():** Métodos de consulta.
+
+### 📚 SistemaPrestamos
+- **prestarLibro(String isbn):**
+  - Presta el libro si está disponible.
+  - Lanza **LibroNoEncontradoException** si no existe.
+  - Lanza **LibroNoDisponibleException** si ya fue prestado.
+
+### 📚 Usuario
+- **Usuario(String nombre):** Crea un usuario vacío.
+- **agregarPrestamo(Prestamo prestamo):** Agrega un préstamo al historial.
+
+### 📚 GestionUsuarios
+- **registrarUsuario(String nombre):** Registra nuevos usuarios.
+- **buscarUsuario(String nombre):** Busca usuarios registrados.
+- **registrarPrestamo(String nombreUsuario, String isbn):**
+  - Registra el préstamo de un libro al usuario.
+  - Lanza **UsuarioNoEncontradoException** si el usuario no existe.
+
+### 📚 Excepciones Personalizadas
+- **UsuarioNoEncontradoException:** Cuando el usuario no existe.
+- **LibroNoDisponibleException:** Cuando el libro ya fue prestado.
+- **LibroNoEncontradoException:** Cuando el libro no existe en el catálogo.
+
+---
+
+## 4. Evidencia de que las pruebas pasan correctamente
+
+Resultado de ejecución de los tests:
+
+```
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+```
+
+![image](https://github.com/user-attachments/assets/706a4c18-1adc-423d-8f72-277b0f2c4aed)
+
+
+---
+
+## 5. Guía rápida para correr el proyecto
+
+### Clonar el repositorio:
+
+```bash
+git clone git@github.com:um-programacion-ii/programacion-2-trabajo-practico-3-sofiasoler16.git
+```
+
+### Ir al directorio del proyecto:
+
+```bash
+cd programacion-2-trabajo-practico-3-sofiasoler16/biblioteca
+```
+
+### Ejecutar los tests:
+
+```bash
+mvn clean install
+```
 
 ## Importante
 - La rama `main` está protegida y no se pueden hacer commits directos sobre ella
@@ -51,7 +162,7 @@ El proyecto está dividido en etapas incrementales, cada una enfocada en diferen
    - Estado (Enum: DISPONIBLE, PRESTADO)
 3. Escribir pruebas unitarias para:
    - Creación de un libro con datos válidos
-   - Cambio de estado del libro
+   - Cambio de estadoLibro del libro
 
 **Ejemplo de Guía:**
 ```java
